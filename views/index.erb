@@ -10,11 +10,29 @@
                     background: green;
                 <% end %>
         }
+        
+        form {
+            text-align: center;
+            padding-top: 50px;
+            font-family: sans-serif;
+        }
+        
+        input {
+            font-size: 1.1em;
+            border-top: none;
+        }
+        
+        p {
+            font-size: 1.5em;
+        }
+        
+        
     </style>
     </head>
     <body>
-        <h1>Guess a Number Between 1 and 99</h1>
+        
         <form>
+            <h1>Guess a Number Between 1 and 99</h1>
             <input type='text' name='guess' />
             <input type='submit' value='Guess!' />
             <p><%= message %></p>
