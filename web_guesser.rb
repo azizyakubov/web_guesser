@@ -22,6 +22,7 @@ def check_guess(guess)
     display_message(guess)
 end
 
+
 get '/' do
     guess = params["guess"].to_i
     message = check_guess(guess)
