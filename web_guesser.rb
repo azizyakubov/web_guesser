@@ -3,29 +3,62 @@ require 'sinatra/reloader'
 
 
 @@number = rand(100)
+@@counter = 6
 
 def display_message(guess)
     if guess > @@number+5 
-        message = "Way too high!"
+        message = "Way too high! #{@@counter} guesses left"
     elsif guess < @@number-5
-        message = "Way too low!"
+        message = "Way too low! #{@@counter} guesses left"
     elsif guess < @@number
-        message = "Too low"
+        message = "Too low! #{@@counter} guesses left"
     elsif guess > @@number
-        message = "too high"
+        message = "Too high! #{@@counter} guesses left"
     elsif guess == @@number
-        message = "You got it right! the SECRET NUMBER is #{@@number}"
+        message = "You got it right! the SECRET NUMBER is #{@@number}!"
     end
 end
 
 def check_guess(guess)
-    display_message(guess)
+    if guess == @@number
+        reset
+        @announce = "You got it right! A new game has started!"
+    elsif @@counter == 0
+        reset
+        @announce = "You lose! Generating new number for you..."
+    else
+        @@counter -= 1
+        message = display_message(guess)
+    end
+end
+
+def reset
+    @@counter = 6
+    @@number = rand(100)
 end
 
 
 get '/' do
     guess = params["guess"].to_i
     message = check_guess(guess)
-    erb :index, :locals => { :message => message }
+    erb :index, :locals => { :message => message, :number => @@number, :counter => @@counter, :guess => guess, :announce => @announce } 
 end
+
+
+=begin
+def check_guess(guess)
+    @@counter -= 1
+    if @@counter <= 0
+        @@counter == 6
+        @@number = rand(100)
+        message = "You lose! Generating new number for you.."
+    elsif guess == @@number
+        @@counter == 6
+        @@number = rand(100)
+        message = display_message(guess)
+    else
+        message = display_message(guess)
+    end
+end
+=end
 
