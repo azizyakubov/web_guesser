@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader' if deployment?
+require 'sinatra/reloader' if development?
 
 
 @@number = rand(100)
