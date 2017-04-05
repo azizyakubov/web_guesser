@@ -45,20 +45,3 @@ get '/' do
 end
 
 
-=begin
-def check_guess(guess)
-    @@counter -= 1
-    if @@counter <= 0
-        @@counter == 6
-        @@number = rand(100)
-        message = "You lose! Generating new number for you.."
-    elsif guess == @@number
-        @@counter == 6
-        @@number = rand(100)
-        message = display_message(guess)
-    else
-        message = display_message(guess)
-    end
-end
-=end
-
