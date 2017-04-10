@@ -6,7 +6,9 @@ require 'sinatra/reloader' if development?
 @@counter = 6
 
 def display_message(guess)
-    if guess > @@number+5 
+    if guess == 0
+        message = ""
+    elsif guess > @@number+5 
         message = "Way too high! #{@@counter} guesses left"
     elsif guess < @@number-5
         message = "Way too low! #{@@counter} guesses left"
